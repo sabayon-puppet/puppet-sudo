@@ -166,9 +166,7 @@ class sudo::params {
       $content = "${content_base}sudoers.darwin.erb"
       $config_file_group = 'wheel'
     }
-    default: {
-      case $::operatingsystem {
-        'Gentoo': {
+    'Gentoo': {
           $package = 'sudo'
           $package_ldap = $package
           $package_ensure = 'present'
@@ -176,7 +174,9 @@ class sudo::params {
           $config_dir = '/etc/sudoers.d'
           $content = "${content_base}sudoers.gentoo.erb"
           $config_file_group = 'root'
-        }
+    }
+    default: {
+      case $::operatingsystem {
         'Archlinux': {
           $package = 'sudo'
           $package_ldap = $package
